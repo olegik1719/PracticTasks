@@ -33,10 +33,10 @@ public class SSLEmail {
 //        props.put("mail.smtp.port", "465"); //SMTP Port
 
         props.put("mail.host", properties.getProperty("server"));
-        props.put("mail.socketFactory.port", "465"); //SSL Port
-        props.put("mail.socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
-        props.put("mail.auth", "true"); //Enabling SMTP Authentication
-        props.put("mail.port", "465"); //SMTP Port
+        props.put("mail.smtp.socketFactory.port", "465"); //SSL Port
+        props.put("mail.smtp.socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+        props.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
+        //props.put("mail.port", "465"); //SMTP Port
 
         Authenticator auth = new Authenticator() {
             //override the getPasswordAuthentication method
