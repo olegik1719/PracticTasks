@@ -7,38 +7,33 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.util.Properties;
 
-public class SSL implements Connectable{
+public class NullAuth implements Connectable {
     private Properties properties;
     private Authenticator auth;
-    private SSL(){
+    private NullAuth(){
 
     }
-    public SSL(Protocolable protocolable, Properties props){
+    public NullAuth (Protocolable protocolable, Properties props){
         this();
         properties = new Properties();
         String login = props.getProperty("login");
         String password = props.getProperty("password");
-        auth = new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(login,password);
-            }
-        };
+
 
         properties.put("mail.host", props.getProperty("server"+protocolable.getType().toUpperCase()));
         properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port"+protocolable.getType().toUpperCase(), protocolable.getPort(this)));
-        properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
-        properties.put("mail."+protocolable.getType()+".auth", "true");
+        properties.put("mail."+protocolable.getType()+".auth", "false");
 
     }
 
     @Override
     public String getCryptType() {
-        return "SSL";
+        return "NullAuth";
     }
 
     @Override
     public Session getSession() {
         return Session.getDefaultInstance(properties, auth);
     }
+
 }

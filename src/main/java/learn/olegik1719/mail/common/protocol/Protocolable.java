@@ -1,4 +1,6 @@
-package learn.olegik1719.mail.common.transport;
+package learn.olegik1719.mail.common.protocol;
+
+import learn.olegik1719.mail.common.transport.Connectable;
 
 public interface Protocolable {
     String getType();

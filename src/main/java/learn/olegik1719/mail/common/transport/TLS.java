@@ -1,5 +1,7 @@
 package learn.olegik1719.mail.common.transport;
 
+import learn.olegik1719.mail.common.protocol.Protocolable;
+
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -22,6 +24,9 @@ public class TLS implements Connectable{
                 return new PasswordAuthentication(login,password);
             }
         };
+
+        System.out.printf("%s%n%s%n", login,password);
+
         properties.put("mail.host", props.getProperty("server"+protocolable.getType().toUpperCase()));
         properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port"+protocolable.getType().toUpperCase(), protocolable.getPort(this)));
         properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class

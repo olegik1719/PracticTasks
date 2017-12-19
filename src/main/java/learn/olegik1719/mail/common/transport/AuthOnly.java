@@ -7,13 +7,13 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.util.Properties;
 
-public class SSL implements Connectable{
+public class AuthOnly implements Connectable {
     private Properties properties;
     private Authenticator auth;
-    private SSL(){
+    private AuthOnly(){
 
     }
-    public SSL(Protocolable protocolable, Properties props){
+    public AuthOnly (Protocolable protocolable, Properties props){
         this();
         properties = new Properties();
         String login = props.getProperty("login");
@@ -27,18 +27,18 @@ public class SSL implements Connectable{
 
         properties.put("mail.host", props.getProperty("server"+protocolable.getType().toUpperCase()));
         properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port"+protocolable.getType().toUpperCase(), protocolable.getPort(this)));
-        properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
         properties.put("mail."+protocolable.getType()+".auth", "true");
 
     }
 
     @Override
     public String getCryptType() {
-        return "SSL";
+        return "AuthOnly";
     }
 
     @Override
     public Session getSession() {
         return Session.getDefaultInstance(properties, auth);
     }
+
 }

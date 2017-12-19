@@ -1,32 +1,21 @@
-package learn.olegik1719.mail.smtp;
+package learn.olegik1719.mail.common;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.Enumeration;
-
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
 import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 public class EmailUtil {
 
     /**
      * Utility method to send simple HTML email
      *
-     * @param session
-     * @param toEmail
-     * @param subject
-     * @param body
+     * @param session -- connection
+     * @param toEmail -- to address
+     * @param subject -- subject of message
+     * @param body -- body of message
      */
     public static void sendEmail(Session session, String fromEmail, String toEmail, String subject, String body) {
         try {
@@ -45,7 +34,7 @@ public class EmailUtil {
             msg.setSentDate(new Date());
 
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-            System.out.println("Message is ready");
+            //System.out.println("Message is ready");
 //            Enumeration<String> enumeration = msg.getAllHeaderLines();
 //            while (enumeration.hasMoreElements()) {
 //                System.out.printf("%s%n", enumeration.nextElement());

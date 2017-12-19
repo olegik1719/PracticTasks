@@ -1,6 +1,7 @@
 package learn.olegik1719.mail.smtp;
 
-import learn.olegik1719.mail.common.transport.MailProtocols;
+import learn.olegik1719.mail.common.EmailUtil;
+import learn.olegik1719.mail.common.protocol.MailProtocols;
 import learn.olegik1719.mail.common.transport.SSL;
 import learn.olegik1719.mail.common.transport.Connectable;
 import learn.olegik1719.mail.common.transport.TLS;
