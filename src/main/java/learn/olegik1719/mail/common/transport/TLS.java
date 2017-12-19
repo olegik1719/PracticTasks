@@ -22,10 +22,10 @@ public class TLS implements Connectable{
                 return new PasswordAuthentication(login,password);
             }
         };
-        properties.put("mail.host", props.getProperty("server"));
-        properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port", protocolable.getPort(this)));
-        //properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
-        props.put("mail."+protocolable.getType()+"starttls.enable", "true"); //enable STARTTLS
+        properties.put("mail.host", props.getProperty("server"+protocolable.getType().toUpperCase()));
+        properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port"+protocolable.getType().toUpperCase(), protocolable.getPort(this)));
+        properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+        properties.put("mail."+protocolable.getType()+".starttls.enable", "true"); //enable STARTTLS
         properties.put("mail."+protocolable.getType()+".auth", "true");
 
     }

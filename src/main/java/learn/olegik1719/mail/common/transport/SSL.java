@@ -22,8 +22,8 @@ public class SSL implements Connectable{
                 return new PasswordAuthentication(login,password);
             }
         };
-        properties.put("mail.host", props.getProperty("server"));
-        properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("portSMTP", protocolable.getPort(this)));
+        properties.put("mail.host", props.getProperty("server"+protocolable.getType().toUpperCase()));
+        properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port"+protocolable.getType().toUpperCase(), protocolable.getPort(this)));
         properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
         properties.put("mail."+protocolable.getType()+".auth", "true");
 

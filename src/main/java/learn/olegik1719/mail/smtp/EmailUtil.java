@@ -46,13 +46,13 @@ public class EmailUtil {
 
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
             System.out.println("Message is ready");
-            Enumeration<String> enumeration = msg.getAllHeaderLines();
-            while (enumeration.hasMoreElements()) {
-                System.out.printf("%s%n", enumeration.nextElement());
-            }
+//            Enumeration<String> enumeration = msg.getAllHeaderLines();
+//            while (enumeration.hasMoreElements()) {
+//                System.out.printf("%s%n", enumeration.nextElement());
+//            }
             Transport.send(msg);
 
-            System.out.println("EMail Sent Successfully!!");
+            //System.out.println("EMail Sent Successfully!!");
         } catch (Exception e) {
             e.printStackTrace();
         }
