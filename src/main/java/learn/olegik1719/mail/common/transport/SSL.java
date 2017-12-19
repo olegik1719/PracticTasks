@@ -8,7 +8,11 @@ import java.util.Properties;
 public class SSL implements Connectable{
     Properties properties;
     Authenticator auth;
+    private SSL(){
+
+    }
     public SSL(Protocolable protocolable, Properties props){
+        this();
         properties = new Properties();
         String login = (String) props.remove("login");
         String password = (String) props.remove("password");
@@ -18,8 +22,11 @@ public class SSL implements Connectable{
                 return new PasswordAuthentication(login,password);
             }
         };
-        properties.put("mail.host", properties.getProperty("server"));
-        properties.put("mail."+protocolable.getType()+".socketFactory.port", "465");
+        properties.put("mail.host", props.getProperty("server"));
+        properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port", protocolable.getPort(this)));
+        properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+        properties.put("mail."+protocolable.getType()+".auth", "true");
+
     }
 
     @Override
@@ -29,6 +36,6 @@ public class SSL implements Connectable{
 
     @Override
     public Session getSession() {
-        return null;
+        return Session.getDefaultInstance(properties, auth);
     }
 }

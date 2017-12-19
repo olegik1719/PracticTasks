@@ -8,8 +8,17 @@ public enum MailProtocols implements Protocolable{
         }
 
         @Override
+        public boolean canSend(){
+            return true;
+        }
+
+        @Override
         public String getPort(Connectable connectable) {
-            return null;
+            switch(connectable.getCryptType()){
+                case "SSL":return  "465";
+                case  "TLS":return "965";
+                default: return "25";
+            }
         }
     }
 }
