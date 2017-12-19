@@ -17,31 +17,19 @@ import java.util.Properties;
 public class POPExample {
     public static void main(String[] args) throws Exception {
 
-
         Properties properties = new Properties();
-        properties.load(new FileInputStream("src/main/java/learn/olegik1719/mail/config.properties"));
-
+        properties.load(new FileInputStream("src/main/java/learn/olegik1719/mail/common/config.properties"));
         Protocolable protocolable = MailProtocols.IMAP;
-
         Connectable connect = new SSL(protocolable,properties);
-
         Session session = connect.getSession();
-
         Store store = session.getStore(protocolable.getType());
-
         store.connect();
-
         Folder folder = store.getFolder("inbox");
-
         folder.open(Folder.READ_ONLY);
-
         Message[] messages = folder.getMessages();
         int i=0;
-        // Display message.
-        //for (int i = 0; i < messages.length; i++) {
         for (Message msg:messages){
             System.out.println("------------ Message " + (++i) + " ------------");
-            // Here's the big change...
             String from = InternetAddress.toString(msg.getFrom());
             if (from != null) {
                 System.out.println("From: " + from);
@@ -78,6 +66,8 @@ public class POPExample {
             if (received != null) {
                 System.out.println("Received: " + received);
             }
+
+            //msg.getH
             System.out.println();
         }
 

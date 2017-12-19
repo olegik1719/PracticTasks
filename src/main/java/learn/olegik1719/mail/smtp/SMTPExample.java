@@ -14,7 +14,7 @@ import java.util.Properties;
 public class SMTPExample {
     public static void main(String[] args) throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileInputStream("src/main/java/learn/olegik1719/mail/config.properties"));
+        properties.load(new FileInputStream("src/main/java/learn/olegik1719/mail/common/config.properties"));
         String fromSend = (String)properties.remove("from");
         String toSend = (String)properties.remove("to");
         Connectable connectTLS = new TLS(MailProtocols.SMTP,properties);
