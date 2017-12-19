@@ -5,13 +5,13 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.util.Properties;
 
-public class SSL implements Connectable{
+public class TLS implements Connectable{
     Properties properties;
     Authenticator auth;
-    private SSL(){
+    private TLS(){
 
     }
-    public SSL(Protocolable protocolable, Properties props){
+    public TLS(Protocolable protocolable, Properties props){
         this();
         properties = new Properties();
         String login = (String) props.remove("login");
@@ -23,15 +23,16 @@ public class SSL implements Connectable{
             }
         };
         properties.put("mail.host", props.getProperty("server"));
-        properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("portSMTP", protocolable.getPort(this)));
-        properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+        properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port", protocolable.getPort(this)));
+        //properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+        props.put("mail."+protocolable.getType()+"starttls.enable", "true"); //enable STARTTLS
         properties.put("mail."+protocolable.getType()+".auth", "true");
 
     }
 
     @Override
     public String getCryptType() {
-        return "SSL";
+        return "TLS";
     }
 
     @Override

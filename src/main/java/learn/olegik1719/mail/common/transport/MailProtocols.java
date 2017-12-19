@@ -16,7 +16,7 @@ public enum MailProtocols implements Protocolable{
         public String getPort(Connectable connectable) {
             switch(connectable.getCryptType()){
                 case "SSL":return  "465";
-                case  "TLS":return "965";
+                case  "TLS":return "587";
                 default: return "25";
             }
         }
