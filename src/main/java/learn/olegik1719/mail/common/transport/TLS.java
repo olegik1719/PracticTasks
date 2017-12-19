@@ -25,8 +25,6 @@ public class TLS implements Connectable{
             }
         };
 
-        System.out.printf("%s%n%s%n", login,password);
-
         properties.put("mail.host", props.getProperty("server"+protocolable.getType().toUpperCase()));
         properties.put("mail."+protocolable.getType()+".socketFactory.port", props.getProperty("port"+protocolable.getType().toUpperCase(), protocolable.getPort(this)));
         properties.put("mail."+protocolable.getType()+".socketFactory.class",             "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class

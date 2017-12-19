@@ -17,23 +17,11 @@ public class SMTPExample {
         properties.load(new FileInputStream("src/main/java/learn/olegik1719/mail/common/config.properties"));
         String fromSend = (String)properties.remove("from");
         String toSend = (String)properties.remove("to");
-        Connectable connectTLS = new TLS(MailProtocols.SMTP,properties);
-        for(Object str:properties.keySet()){
-            System.out.printf("%s : %s%n", str, properties.getProperty((String) str));
-        }
-        Session sessionTLS = connectTLS.getSession();
-        System.out.println("Session TLS created");
-        EmailUtil.sendEmail(sessionTLS, fromSend, toSend, "SSLEmail Testing Subject", "SSLEmail Testing Body");
-        for(Object str:properties.keySet()){
-            System.out.printf("%s : %s%n", str, properties.getProperty((String) str));
-        }
         Connectable connectSSL = new SSL(MailProtocols.SMTP,properties);
         Session sessionSSL = connectSSL.getSession();
-        System.out.println("Session SSL created");
-        EmailUtil.sendEmail(sessionSSL, fromSend, toSend, "SSLEmail Testing Subject", "SSLEmail Testing Body");
-        for(Object str:properties.keySet()){
-            System.out.printf("%s : %s%n", str, properties.getProperty((String) str));
-        }
+        //System.out.println("Session SSL created");
+        EmailUtil.sendEmail(sessionSSL, fromSend, toSend, "Testing Subject1", "SSLEmail Testing Body");
+        EmailUtil.sendEmail(sessionSSL, fromSend, toSend, "Testing Subject2", "SSLEmail Testing Body");
     }
 }
 

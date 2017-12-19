@@ -16,6 +16,6 @@ public class ConfigCreator {
         properties.setProperty("portPOP3","port.pop3");
         properties.setProperty("portIMAP","port.imap");
         properties.setProperty("portSMTP","port.smtp");
-        properties.store(System.out,"Comments");
+        properties.store(System.out,"");
     }
 }
