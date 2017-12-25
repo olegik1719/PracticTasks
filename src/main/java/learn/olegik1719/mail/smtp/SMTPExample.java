@@ -21,7 +21,7 @@ public class SMTPExample {
         Session sessionSSL = connectSSL.getSession();
         //System.out.println("Session SSL created");
         EmailUtil.sendEmail(sessionSSL, fromSend, toSend, "Testing Subject1", "SSLEmail Testing Body");
-        EmailUtil.sendEmail(sessionSSL, fromSend, toSend, "Testing Subject2", "SSLEmail Testing Body");
+        //EmailUtil.sendEmail(sessionSSL, fromSend, toSend, "Testing Subject2", "SSLEmail Testing Body");
     }
 }
 
